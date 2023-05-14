@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet adoption/shelter website: Pet Amigo</title>
+</head>
+
+<body>
+    <div class="header">
+        <h2 class="logo">
+            <a href="#">Pet Amigo</a>
+        </h2>
+        <nav class="navigation">
+            <a href="#">Home</a>
+            <a href="#">Find a Pet</a>
+            <a href="#">Find a Shelter</a>
+            <a href="#">My Favourites</a>
+            <button class="btnlogin-popup">Login</button>
+        </nav>
+    </div>
+    <main>
+        <section>
+            <h2>Edit Profile</h2>
+            <form>
+                <label for="profile-picture">Profile Picture</label>
+                <input type="file" id="profile-picture" name="profile-picture">
+                <br>
+                <div class="preview-container" id="preview-container"></div>
+                <br>
+                <label for="shelter-name">Shelter Name</label>
+                <input type="text" id="shelter-name" name="shelter-name" value="Johnny's Home">
+                <br>
+                <label for="shelter-owner">Owner</label>
+                <input type="text" id="shelter-owner" name="shelter-owner" value="Lee">
+                <br>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="johndoe@example.com">
+                <br>
+                <label for="about">About</label>
+                <textarea id="about" name="about">I love pets!</textarea>
+                <br>
+                <button type="submit">Save Changes</button>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset = "UTF-8">
+        <meta http-equiv="XUA-Compatible" content=""IE=edge>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pet adoption/shelter website: Pet Amigo</title>
+        <link rel="stylesheet" href="">
+        
+
+            
+    </head>
+    <body>
+        <div class = "header">
+            <h2 class="logo">
+                <a href="#">Pet Amigo</a>
+            </h2>
+            <nav class="navigation">
+                <a href="#">Home</a>
+                <a href="#">Find a Pet</a>
+                <a href="#">Find a Shelter</a>
+                <a href="#">My Favourites</a>
+                <button class = "btnlogin-popup">Login</button>
+            </nav>
+        </div>
+        <h2>Shelter Account Registration</h2>
+        <form>
+            <label for="shelter-name">Shelter Name:</label>
+            <input type="text" id="shelter-name" name="shelter-name"><br><br>
+
+            <label for="shelter-owner">Shelter Owner:</label>
+            <input type="text" id="shelter-owner" name="shelter-owner"><br><br>
+
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone"><br><br>
+
+            <label for="shelter-email">Email (your email will be used ):</label>
+            <input type="text" id="shelter-email" name="shelter-email"><br><br>
+
+            <label for="shelter-address">Address(shelter must be registered in Google Maps for authenticity!):</label>
+            <input type="text" id="shelter-address" name="shelter-address"><br><br>
+
+            <label for="shelter-link">Website/Social Media link (if any):</label>
+            <input type="text" id="shelter-link" name="shelter-link"><br><br>
+
+            <label for="ssm-file">Business Registration (SSM):</label>
+            <input type="file" id="ssm-file" name="ssm-file"><br><br>
+
+            <label for="liscense-file">Liscense/Permit:</label>
+            <input type="file" id="liscense-file" name="liscense-file"><br><br>
+
+            <label for="bod-file">BOD Information:</label>
+            <input type="file" id="bod-file" name="bod-file"><br><br>
+
+            <!--the admin will open a new account using email, and create a temporary password 
+                and email the shelter.
+                th admin cannot see the passwords in their database.
+                the shelter is told to change password. otp is required-->
+
+
+            <button type="submit" value="Submit">
+        </form>
+
+    
+    </body>
+</html>

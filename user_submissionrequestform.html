@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset = "UTF-8">
+        <meta http-equiv="XUA-Compatible" content=""IE=edge>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pet adoption/shelter website: Pet Amigo</title>
+        <link rel="stylesheet" href="">
+        
+
+            
+    </head>
+    <body>
+        <div class = "header">
+            <h2 class="logo">
+                <a href="#">Pet Amigo</a>
+            </h2>
+            <nav class="navigation">
+                <a href="#">Home</a>
+                <a href="#">Find a Pet</a>
+                <a href="#">Find a Shelter</a>
+                <a href="#">My Favourites</a>
+                <button class = "btnlogin-popup">Login</button>
+            </nav>
+        </div>
+        <h1>Animal Submission Request</h1>
+        <form>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username"><br><br>
+
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone"><br><br>
+
+            <label for="animal-name">Animal Name</label>
+            <input type="text" id="animal-name" name="animal-name" value="Kiki"><br><br>
+
+            <label for="gender">Gender:</label>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label><br><br>
+            
+            <label for="animal-age">Animal Age (if you don't know, it's okay to guess!)</label>
+            <input type="text" id="animal-age" name="animal-age" value="2 months"><br><br>
+
+            <label for="spayed-neutered">Spayed/Neutered?:</label>
+            <input type="radio" id="yes" name="spayed-neutered" value="yes">
+            <label for="yes">Yes</label>
+            <input type="radio" id="no" name="spayed-neutered" value="no">
+            <label for="no">No</label><br><br>
+
+            <label for="description">Description:</label><br>
+            <div id="editor">
+                <!-- This is where the toolbar will be inserted -->
+                <textarea id="description" name="description"></textarea>
+            </div><br><br>
+            <label for="media">Media:</label>
+            <input type="file" id="media" name="media"><br><br>
+            <button type="submit" value="Submit">
+        </form>
+
+    
+    </body>
+</html>

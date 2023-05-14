@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset = "UTF-8">
+        <meta http-equiv="XUA-Compatible" content=""IE=edge>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pet adoption/shelter website: Pet Amigo</title>
+        <link rel="stylesheet" href="">
+        
+
+            
+    </head>
+    <body>
+        <div class = "header">
+            <h2 class="logo">
+                <a href="#">Pet Amigo</a>
+            </h2>
+            <nav class="navigation">
+                <a href="#">Home</a>
+                <a href="#">Find a Pet</a>
+                <a href="#">Find a Shelter</a>
+                <a href="#">My Favourites</a>
+                <button class = "btnlogin-popup">Login</button>
+            </nav>
+        </div>
+        <h1>Animal Submission Request</h1>
+        <form>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username"><br><br>
+            <label for="name">Name:</label>
+            <input type="text" id="rname" name="name"><br><br>
+
+            <label for="adoptee-name">Adoptee Name:</label><br><br>
+
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone"><br><br>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email"><br><br>
+
+            <label for="adopter-information">Write about your lifestyle, adoption history, references if any, and expectations & plans:</label><br>
+            <div id="editor">
+                <!-- This is where the toolbar will be inserted -->
+                <textarea id="description" name="description"></textarea>
+            </div><br><br>
+
+            <label for="media">Upload files if there's more to show that you are a suitable adopter:</label>
+            <input type="file" id="media" name="media"><br><br>
+            <button type="submit" value="Submit">
+        </form>
+
+    
+    </body>
+</html>
