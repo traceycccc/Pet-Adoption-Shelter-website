@@ -1,65 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset = "UTF-8">
+        <meta http-equiv="XUA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pet adoption/shelter website: Pet Amigo</title>
+        <link rel="stylesheet" href="">
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet adoption/shelter website: Pet Amigo</title>
-</head>
+    <body>
+        <div class="header">
+            <h2 class="logo">
+                <a href="#">Pet Amigo</a>
+            </h2>
+            <nav class="navigation">
+                <a href="#">Home</a>
+                <a href="#">Find a Pet</a>
+                <a href="#">Find a Shelter</a>
+                <a href="#">My Favourites</a>
+                <button class="btnlogin-popup">Login</button>
+            </nav>
+        </div>
+        <main>
+            <section>
+                <h2>Edit Profile</h2>
+                <form>
+                    <label for="profile-picture">Profile Picture</label>
+                    <input type="file" id="profile-picture" name="profile-picture">
+                    <br>
+                    <div class="preview-container" id="preview-container"></div>
+                    <br>
+                    <label for="animal-name">Animal Name</label>
+                    <input type="text" id="animal-name" name="animal-name" value="Kiki">
+                    <br>
+                    <label for="shelter-name">Shelter Name</label>
+                    <input type="text" id="shelter-name" name="shelter-name" value="Johhny's Home">
+                    <br>
+                    <label for="gender">Gender:</label>
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label for="male">Male</label>
 
-<body>
-    <div class="header">
-        <h2 class="logo">
-            <a href="#">Pet Amigo</a>
-        </h2>
-        <nav class="navigation">
-            <a href="#">Home</a>
-            <a href="#">Find a Pet</a>
-            <a href="#">Find a Shelter</a>
-            <a href="#">My Favourites</a>
-            <button class="btnlogin-popup">Login</button>
-        </nav>
-    </div>
-    <main>
-        <section>
-            <h2>Edit Profile</h2>
-            <form>
-                <label for="profile-picture">Profile Picture</label>
-                <input type="file" id="profile-picture" name="profile-picture">
-                <br>
-                <div class="preview-container" id="preview-container"></div>
-                <br>
-                <label for="animal-name">Animal Name</label>
-                <input type="text" id="animal-name" name="animal-name" value="Kiki">
-                <br>
-                <label for="shelter-name">Shelter Name</label>
-                <input type="text" id="shelter-name" name="shelter-name" value="Johhny's Home">
-                <br>
-                <label for="gender">Gender:</label>
-                <input type="radio" id="male" name="gender" value="male">
-                <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Female</label>
+                    <br>
+                    <label for="animal-age">Animal Age</label>
+                    <input type="text" id="animal-age" name="animal-age" value="2 months">
+                    <br>
+                    <label for="spayed-neutered">Spayed/Neutered?:</label>
+                    <input type="radio" id="yes" name="spayed-neutered" value="yes">
+                    <label for="yes">Yes</label>
 
-                <input type="radio" id="female" name="gender" value="female">
-                <label for="female">Female</label>
-                <br>
-                <label for="animal-age">Animal Age</label>
-                <input type="text" id="animal-age" name="animal-age" value="2 months">
-                <br>
-                <label for="spayed-neutered">Spayed/Neutered?:</label>
-                <input type="radio" id="yes" name="spayed-neutered" value="yes">
-                <label for="yes">Yes</label>
-
-                <input type="radio" id="no" name="spayed-neutered" value="no">
-                <label for="no">No</label>
-                <br>
-                <label for="about">About</label>
-                <textarea id="about" name="about">I love pets!</textarea>
-                <br>
-                <button type="submit">Save Changes</button>
-            </form>
-        </section>
-    </main>
-</body>
+                    <input type="radio" id="no" name="spayed-neutered" value="no">
+                    <label for="no">No</label>
+                    <br>
+                    <label for="about">About</label>
+                    <textarea id="about" name="about">I love pets!</textarea>
+                    <br>
+                    <button type="submit">Save Changes</button>
+                </form>
+            </section>
+        </main>
+    </body>
 
 </html>
