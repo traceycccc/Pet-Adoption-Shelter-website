@@ -1,49 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset = "UTF-8">
-        <meta http-equiv="XUA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pet adoption/shelter website: Pet Amigo</title>
-        <link rel="stylesheet" href="">
-        
 
-            
-    </head>
-    <body>
-        <div class = "header">
-            <h2 class="logo">
-                <a href="#">Pet Amigo</a>
-            </h2>
-            <nav class="navigation">
-                <a href="#">Home</a>
-                <a href="#">Find a Pet</a>
-                <a href="#">Find a Shelter</a>
-                <a href="#">My Favourites</a>
-                <button class = "btnlogin-popup">Login</button>
-            </nav>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Pet Amigo</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">Pet Amigo</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Main body content -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6"> <!--element should occupy 6 columns out of the total 12 columns -->
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">User Registration</h4>
+                        <form id="user-registration-form">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="username" class="form-control" id="username" placeholder="Enter username">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="Enter password">
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary mt-3" id="register-button">Register</button>
+                            </div>
+                        </form>
+                        <hr>
+                        <h4 class="card-title">OTP Verification</h4>
+                        <form id="otp-verification-form">
+                            <div class="mb-3">
+                            <label for="otp" class="form-label">OTP</label>
+                            <input type="otp" class="form-control" id="otp" placeholder="Enter 4 digit OTP">
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary mt-3" id="verify-button">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <h2>Create Account</h2>
-        <form id="send-otp-form">
-            <label for="user-email">Email:</label>
-            <input type="text" id="user-email" name="user-email"><br><br>
-        
-            <label for="password">New Password</label>
-            <input type="password" id="password" name="password" required><br><br>
-        
-            <label for="confirm-password">Confirm Password</label>
-            <input type="password" id="confirm-password" name="confirm-password" required><br><br>
-        
-            <button type="submit" id="send-otp-btn">Send OTP</button><br><br>
-          </form>
-        
-          <form id="verify-otp-form">
-            <label for="otp">Enter OTP:</label>
-            <input type="text" id="otp" name="otp"><br><br>
-        
-            <button type="submit" id="submit-btn">Submit</button>
-          </form>
+    </div>
+    <div class="container my-3 text-center">
+        <a href="#" class="btn btn-link">Back</a>
+    </div>
+  </main>
 
-    
-    </body>
+
+  <!-- Footer -->
+  <footer class="bg-light text-center py-3">
+    <div class="container">
+      <p>Contact: admin@example.com</p>
+      <p>© 2023 Pet Amigo. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS (needs Popper.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
 </html>

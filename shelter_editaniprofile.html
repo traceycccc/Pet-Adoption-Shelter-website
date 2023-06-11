@@ -1,65 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset = "UTF-8">
-        <meta http-equiv="XUA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pet adoption/shelter website: Pet Amigo</title>
-        <link rel="stylesheet" href="">
-    </head>
 
-    <body>
-        <div class="header">
-            <h2 class="logo">
-                <a href="#">Pet Amigo</a>
-            </h2>
-            <nav class="navigation">
-                <a href="#">Home</a>
-                <a href="#">Find a Pet</a>
-                <a href="#">Find a Shelter</a>
-                <a href="#">My Favourites</a>
-                <button class="btnlogin-popup">Login</button>
-            </nav>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Profile - Pet Amigo</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Pet Amigo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item ms-3">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a class="nav-link" href="#">Pet Profiles</a>
+                    </li>
+                    <li class="nav-item dropdown ms-3">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Requests</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Submission Requests</a></li>
+                            <li><a class="dropdown-item" href="#">Adoption Requests</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <div id="loginButton" class="nav-link">
+                            <i class="bi bi-person-circle"></i>
+                          <!-- User Icon will be dynamically updated here -->
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <main>
-            <section>
-                <h2>Edit Profile</h2>
-                <form>
-                    <label for="profile-picture">Profile Picture</label>
-                    <input type="file" id="profile-picture" name="profile-picture">
-                    <br>
-                    <div class="preview-container" id="preview-container"></div>
-                    <br>
-                    <label for="animal-name">Animal Name</label>
-                    <input type="text" id="animal-name" name="animal-name" value="Kiki">
-                    <br>
-                    <label for="shelter-name">Shelter Name</label>
-                    <input type="text" id="shelter-name" name="shelter-name" value="Johhny's Home">
-                    <br>
-                    <label for="gender">Gender:</label>
-                    <input type="radio" id="male" name="gender" value="male">
-                    <label for="male">Male</label>
+    </nav>
 
-                    <input type="radio" id="female" name="gender" value="female">
-                    <label for="female">Female</label>
+    
+    <!-- Main body content -->
+    <main>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-lg-12">
+                <h2>Edit Animal Profile</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 mt-4 d-flex flex-column align-items-center">
+                    <div class="profile-picture-container">
+                        <img class="profile-picture" src="testimage.png" alt="Profile Picture">
+                    </div>
                     <br>
-                    <label for="animal-age">Animal Age</label>
-                    <input type="text" id="animal-age" name="animal-age" value="2 months">
-                    <br>
-                    <label for="spayed-neutered">Spayed/Neutered?:</label>
-                    <input type="radio" id="yes" name="spayed-neutered" value="yes">
-                    <label for="yes">Yes</label>
+                    <button class="btn btn-primary mt-2">Upload Picture</button>
+                </div>
+                
+                <div class="col-lg-8 mt-4 animal-info">
+                    <h4>Animal Information</h4><br>
+                    <form id="edit-profile-form">
+                        
+                        <div class="mb-3">
+                            <label for="animal-name" class="form-label">Shelter Name</label>
+                            <input type="text" class="form-control" id="animal-name" name="animal-name" value="Kiki">
+                        </div>
+                        <div class="mb-3">
+                            <label for="shelter-name" class="form-label">Shelter Name</label>
+                            <input type="text" class="form-control" id="shelter-name" name="shelter-name" value="John Doe">
+                        </div>
+                        <div class="mb-3">
+                            <label for="gender" class="form-label">Gender</label>
+                            <div>
+                                <input type="radio" id="male" name="gender" value="male" class="form-check-input">
+                                <label for="male" class="form-check-label radio-label">Male</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="female" name="gender" value="female" class="form-check-input">
+                                <label for="female" class="form-check-label radio-label">Female</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="animal-age" class="form-label">Animal Age</label>
+                            <input type="text" class="form-control" id="animal-age" name="animal-age" placeholder="Enter age (e.g. 2 months, 3 weeks)">
+                        </div>
+                        <div class="mb-3">
+                            <label for="vaccinated" class="form-label">Is vaccinated</label>
+                            <div>
+                                <input type="radio" id="yes" name="vaccinated" value="yes" class="form-check-input">
+                                <label for="yes" class="form-check-label radio-label">Yes</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="no" name="vaccinated" value="no" class="form-check-input">
+                                <label for="no" class="form-check-label radio-label">No</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="spayed-neutered" class="form-label">Is spayed / neutered</label>
+                            <div>
+                                <input type="radio" id="yes" name="spayed-neutered" value="yes" class="form-check-input">
+                                <label for="yes" class="form-check-label radio-label">Yes</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="no" name="spayed-neutered" value="no" class="form-check-input">
+                                <label for="no" class="form-check-label radio-label">No</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="status" class="form-label">Status</label>
+                            <div>
+                                <input type="radio" id="status-available" name="status" value="available" class="form-check-input">
+                                <label for="status-available" class="form-check-label radio-label">Available</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="status-requested" name="status" value="requested" class="form-check-input">
+                                <label for="status-requested" class="form-check-label radio-label">Requested</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="status-unavailable" name="status" value="unavailable" class="form-check-input">
+                                <label for="status-unavailable" class="form-check-label radio-label">Unavailable</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="about" class="form-label">About</label>
+                            <textarea class="form-control" id="about" name="about">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at urna sodales, tincidunt justo sed, fermentum tellus. Aenean nec fermentum nisi, id efficitur neque. Curabitur pharetra nunc nec elit lobortis, sit amet semper neque pulvinar.</textarea>
+                        </div>
+                        <div class="d-grid gap-2 mb-4">
+                            <button type="submit" class="btn btn-primary mt-3 save-changes-button" id="save-button">Save Changes</button>
+                        </div>
+                        
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
 
-                    <input type="radio" id="no" name="spayed-neutered" value="no">
-                    <label for="no">No</label>
-                    <br>
-                    <label for="about">About</label>
-                    <textarea id="about" name="about">I love pets!</textarea>
-                    <br>
-                    <button type="submit">Save Changes</button>
-                </form>
-            </section>
-        </main>
-    </body>
+    <!-- Footer -->
+    <footer class="bg-light text-center py-3">
+        <div class="container">
+        <p>© 2023 Pet Amigo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS (needs Popper.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 
 </html>

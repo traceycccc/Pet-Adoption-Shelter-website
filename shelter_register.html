@@ -1,66 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset = "UTF-8">
-        <meta http-equiv="XUA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pet adoption/shelter website: Pet Amigo</title>
-        <link rel="stylesheet" href="">
-        
 
-            
-    </head>
-    <body>
-        <div class = "header">
-            <h2 class="logo">
-                <a href="#">Pet Amigo</a>
-            </h2>
-            <nav class="navigation">
-                <a href="#">Home</a>
-                <a href="#">Find a Pet</a>
-                <a href="#">Find a Shelter</a>
-                <a href="#">My Favourites</a>
-                <button class = "btnlogin-popup">Login</button>
-            </nav>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Pet Amigo</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">Pet Amigo</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Main body content -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6"> <!--element should occupy 6 columns out of the total 12 columns -->
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Shelter Registration</h4>
+                        <form id="shelter-registration-form">
+                            <div class="mb-3">
+                                <label for="shelter-name" class="form-label">Shelter Name</label>
+                                <input type="text" class="form-control" id="shelter-name" name="shelter-name" placeholder="Enter shelter's name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="shelter-owner" class="form-label">Shelter Owner</label>
+                                <input type="text" class="form-control" id="shelter-owner" name="shelter-owner" placeholder="Enter owner's name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="contacts" class="form-label">Contacts</label>
+                                <input type="text" class="form-control" id="contacts" name="contacts" placeholder="Enter phone number">
+                            </div>
+                            <div class="mb-3">
+                                <label for="shelter-email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="shelter-email" name="shelter-email" placeholder="Enter shelter email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="shelter-address" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="shelter-address" name="shelter-address" placeholder="Enter the address that is registered in Google Maps">
+                            </div>
+                            <div class="mb-3">
+                                <label for="shelter-link" class="form-label">Website / Social Media (optional)</label>
+                                <input type="text" class="form-control" id="shelter-link" name="shelter-link" placeholder="Enter website / social media">
+                            </div>
+                            <div class="mb-3">
+                                <label for="shelter-ssm" class="form-label">Business Registration (SSM)</label>
+                                <input type="file" class="form-control" id="shelter-ssm" name="shelter-ssm">
+                            </div>
+                            <div class="mb-3">
+                                <label for="shelter-license" class="form-label">License / Permit</label>
+                                <input type="file" class="form-control" id="shelter-license" name="shelter-license">
+                            </div>
+                            <div class="mb-3">
+                                <label for="shelter-bod" class="form-label">BOD</label>
+                                <input type="file" class="form-control" id="shelter-bod" name="shelter-bod">
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary mt-3" id="register-button">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <h2>Shelter Account Registration</h2>
-        <form>
-            <label for="shelter-name">Shelter Name:</label>
-            <input type="text" id="shelter-name" name="shelter-name"><br><br>
-
-            <label for="shelter-owner">Shelter Owner:</label>
-            <input type="text" id="shelter-owner" name="shelter-owner"><br><br>
-
-            <label for="phone">Phone Number:</label>
-            <input type="text" id="phone" name="phone"><br><br>
-
-            <label for="shelter-email">Email (your email will be used ):</label>
-            <input type="text" id="shelter-email" name="shelter-email"><br><br>
-
-            <label for="shelter-address">Address(shelter must be registered in Google Maps for authenticity!):</label>
-            <input type="text" id="shelter-address" name="shelter-address"><br><br>
-
-            <label for="shelter-link">Website/Social Media link (if any):</label>
-            <input type="text" id="shelter-link" name="shelter-link"><br><br>
-
-            <label for="ssm-file">Business Registration (SSM):</label>
-            <input type="file" id="ssm-file" name="ssm-file"><br><br>
-
-            <label for="liscense-file">Liscense/Permit:</label>
-            <input type="file" id="liscense-file" name="liscense-file"><br><br>
-
-            <label for="bod-file">BOD Information:</label>
-            <input type="file" id="bod-file" name="bod-file"><br><br>
-
-            <!--the admin will open a new account using email, and create a temporary password 
-                and email the shelter.
-                th admin cannot see the passwords in their database.
-                the shelter is told to change password. otp is required-->
+    </div>
+    <div class="container my-3 text-center">
+        <a href="#" class="btn btn-link">Back</a>
+    </div>
+    <br>
+  </main>
 
 
-            <button type="submit" value="Submit">
-        </form>
+  <!-- Footer -->
+  <footer class="bg-light text-center py-3">
+    <div class="container">
+      <p>Contact: admin@example.com</p>
+      <p>© 2023 Pet Amigo. All rights reserved.</p>
+    </div>
+  </footer>
 
-    
-    </body>
+  <!-- Bootstrap JS (needs Popper.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
 </html>
