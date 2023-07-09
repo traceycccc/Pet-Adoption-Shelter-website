@@ -1,44 +1,67 @@
 <?php
 session_start();
 $user_id = $_SESSION['ID'];
+//echo($user_id);
+
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "nb6kNiJsymQASSx4";
+$dbname = "pet_amigo";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch available animals from the database
+$query = "SELECT * FROM animal WHERE Status = 'available'";
+$result = $conn->query($query);
+
+// Check if any animals are found
+if ($result->num_rows > 0) {
+    $animals = $result->fetch_all(MYSQLI_ASSOC);
+} else {
+    $animals = array();
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Find Pet - Pet Amigo</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Find Pet - Pet Amigo</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="style.css">
     <style>
-        #return-to-top {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        display: none;
-        width: 50px;
-        height: 50px;
-        background: #333;
-        color: #fff;
-        text-align: center;
-        font-size: 18px;
-        line-height: 50px;
-        cursor: pointer;
-        border-radius:20px;
-        opacity: 0.7;
+        .card {
+    
+            margin: 10px;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 1rem;
         }
     </style>
 </head>
-</head>
 
 <body>
+    
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -70,47 +93,38 @@ $user_id = $_SESSION['ID'];
             </div>
         </div>
     </nav>
-  
 
-    <!-- Main body content -->
+
+    <!-- Rest of your HTML body content -->
     <main>
-        <div class="sticky-top">
-            <div class="search-box bg-light py-2 px-4">
-                <button class="search-box-element btn btn-primary d-md-none" type="button" data-bs-toggle="collapse"
-                data-bs-target="#searchCollapse" aria-expanded="false" aria-controls="searchCollapse">
-                <i class="bi bi-search">Toggle Search</i>
-                </button>
-                <div class="collapse show d-md-block" id="searchCollapse">
-                    <form id="find-pet-form">
-                        <!--search inputs-->
-                        <div class="row">
-                        <div class="search-box-element col-md-2 form-group">
-                            <select id="gender" name="gender" class="form-select field-height">
-                            <option value="">Select Gender</option>
-                            <option value="female">Female</option>
-                            <option value="male">Male</option>
-                            </select>
+        <div class="container mt-3">
+            <h2>Find a Pet!</h2>
+            <div class="row mb-2">
+                <?php foreach ($animals as $animal) : ?>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <?php
+                            // Convert blob image data to base64
+                            $imageData = base64_encode($animal['ProfileImage']);
+                            $src = 'data:image/jpeg;base64,' . $imageData;
+                            ?>
+                            <img class="card-img" src="<?php echo $src; ?>" alt="Animal Image">
+                            
+                            <div class="card-body">
+                                
+                                <h5 class="card-title"><?php echo $animal['AnimalName']; ?></h5>
+                                <p class="card-text"><?php echo $animal['Age']; ?></p>
+                                <p class="card-text"><?php echo $animal['Gender']; ?></p>
+                                <a href="user_animalprofile.php?animalID=<?php echo $animal['AnimalID']; ?>" class="btn btn-primary mt-2">View Details</a>
+                            </div>
                         </div>
-                        
-                        <div class="col-md-2 form-group d-flex align-items-center justify-content-center">
-                            <button type="submit" class="btn btn-primary field-height">Search</button>
-                        </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
-
-        <div class="container mt-3">
-            <h2>Results</h2>
-            <div class="row mb-2" id="animal-cards"></div>
-        </div>
-
-        
     </main>
-
-   <!-- Footer -->
-   <div id="footer-container" class="bg-light text-center py-3"></div>
+    <!-- Footer -->
+    <div id="footer-container" class="bg-light text-center py-3"></div>
 
     <a href="#top" id="return-to-top">
         <i class="bi bi-arrow-up"></i>
@@ -137,83 +151,9 @@ $user_id = $_SESSION['ID'];
 
     <!-- Bootstrap JS (needs Popper.js) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        // Fetch animal data from the server
-        function fetchAnimalData(gender) {
-            let url = 'api/animal/get_animals.php';
-
-            if (gender) {
-                url += '?gender=' + gender;
-            }
-
-            return fetch(url)
-                .then(function(response) {
-                    if (!response.ok) {
-                        throw new Error('Error fetching animal data');
-                    }
-                    return response.json();
-                })
-                .then(function(data) {
-                    return data;
-                });
-        }
-
-        // Generate animal cards based on the fetched data
-        function generateAnimalCards(animals) {
-            let animalCardsContainer = document.getElementById('animal-cards');
-            animalCardsContainer.innerHTML = '';
-
-            animals.forEach(function(animal) {
-                // Convert blob data to image URL
-                let imageURL = URL.createObjectURL(animal.profileImage);
-
-                let card = `
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <img class="card-img" src="${imageURL}" alt="Animal Image">
-                            <div class="card-body">
-                                <h5 class="card-title">${animal.animalName}</h5>
-                                <p class="card-text">Age: ${animal.age}</p>
-                                <p class="card-text">Gender: ${animal.gender}</p>
-                                <a href="#" class="btn btn-primary mt-2">Request Adoption</a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-                animalCardsContainer.innerHTML += card;
-            });
-
-            // revoke the object URL to release the resources with the images.
-            URL.revokeObjectURL(imageURL);
-        }
-
-        // Handle form submission
-        document.getElementById('find-pet-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            let gender = document.getElementById('gender').value;
-
-            fetchAnimalData(gender)
-                .then(function(animals) {
-                    generateAnimalCards(animals);
-                })
-                .catch(function(error) {
-                    console.error('Error fetching animal data:', error);
-                });
-        });
-
-        // Fetch all animals on page load
-        fetchAnimalData(null)
-            .then(function(animals) {
-                generateAnimalCards(animals);
-            })
-            .catch(function(error) {
-                console.error('Error fetching animal data:', error);
-            });
-
-    </script>
+   
+    <script src="footer.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

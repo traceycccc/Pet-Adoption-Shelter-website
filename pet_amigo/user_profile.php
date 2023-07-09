@@ -2,7 +2,7 @@
 session_start();
 $user_id = $_SESSION['ID'];
 
-echo($user_id);
+//echo($user_id);
 
 if (!isset($user_id)) {
   header('Location: user_login.php');
@@ -23,24 +23,7 @@ if (!isset($user_id)) {
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
-    <style>
-        #return-to-top {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        display: none;
-        width: 50px;
-        height: 50px;
-        background: #333;
-        color: #fff;
-        text-align: center;
-        font-size: 18px;
-        line-height: 50px;
-        cursor: pointer;
-        border-radius:20px;
-        opacity: 0.7;
-        }
-    </style>
+    
 </head>
 
 <body>
@@ -88,11 +71,12 @@ if (!isset($user_id)) {
                 <div class="col-lg-4 mt-4 d-flex flex-column align-items-center">
                     <div class="profile-picture-container">
                         <img class="profile-picture" alt="Profile Picture">
+                        <input type="file" id="profile-picture-upload" style="display: none;">
                     </div>
                     <br>
-                    <a href="user_uploadprofileimage.php" class="btn btn-primary mt-2">Upload New Profile Image</button>
-                    <a href="user_editprofile.php" class="btn btn-primary mt-2">Edit Profile</button>
-                    <a href="user_changepassword.php" class="btn btn-primary mt-2">Change Password</a>
+                    <a class="btn btn-primary mt-2">Upload New Profile Image</a>
+                    <a href="user_editprofiledetails.php" class="btn btn-primary mt-2">Edit Profile</a>
+                    
                 </div>
         
                 <div class="col-lg-8 mt-4 user-info">
@@ -104,11 +88,13 @@ if (!isset($user_id)) {
                     <br><br>
                     <p><strong>About</strong></p>
                     <div id="about"></div>
+                    
                 </div>
                   
             </div>
         </div>
     </main>
+    <br><br><br><br><br><br>
 
 
     <!-- Footer -->
@@ -143,6 +129,50 @@ if (!isset($user_id)) {
     <script src="footer.js"></script>
 
     <script>
+        // Event listener for "Upload New Profile Image" button
+        document.querySelector('.btn-primary.mt-2').addEventListener('click', function() {
+            document.getElementById('profile-picture-upload').click();
+        });
+
+        // Event listener for file selection
+        document.getElementById('profile-picture-upload').addEventListener('change', function() {
+            var file = this.files[0];
+            if (file) {
+                // File selected, handle the upload
+                handleProfilePictureUpload(file);
+            }
+        });
+
+        // Function to handle profile picture upload
+        function handleProfilePictureUpload(file) {
+            // Create a new FormData object
+            var formData = new FormData();
+
+            // Append the file to the FormData object
+            formData.append('profilePicture', file);
+
+            // Send the file to the server using AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'api/user/upload_profilepicture.php?id=<?php echo $user_id; ?>', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // File uploaded successfully
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        // Reload the page to display the updated profile picture
+                        location.reload();
+                    } else {
+                        alert('Failed to upload profile picture. Please try again.');
+                    }
+                } else {
+                    alert('Error uploading profile picture. Please try again.');
+                }
+            };
+            xhr.send(formData);
+        }
+
+        
+        
         window.addEventListener('DOMContentLoaded', function() {
         // Fetch user profile data
         fetch('api/user/get_profiledetails.php?id=<?php echo $user_id; ?>')

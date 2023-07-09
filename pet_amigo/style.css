@@ -4,7 +4,7 @@
   --primary-color: #ff69b4; /* Main color */
   --primary-text-color: #ffc1e0;
   --secondary-color: #f6b85c; /* Complementary color */
-  --secondary-text-color:#ffe0b2;
+  --secondary-text-color: #ffe0b2;
   --background-color: #ffffff; /* Background color */
   --text-color: #212529;
   --button-padding: 0.5rem 1.5rem; /* Button padding */
@@ -17,7 +17,6 @@
   --font-size-small-medium: 1.5em;
   --font-size-small: 1.25em;
   --font-size-extra-small: 0.9em; /* Smaller than reference size */
-  
 }
 
 body {
@@ -67,7 +66,6 @@ h5 {
   font-size: var(--font-size-extra-small);
 }
 
-
 /* text area*/
 #about {
   height: 200px;
@@ -75,8 +73,6 @@ h5 {
 }
 /*----------------end of headers, texts----------------------*/
 
-/*buttons*/
-/*primary button*/
 .btn-primary {
   color: var(--primary-text-color);
   background-color: var(--primary-color);
@@ -84,7 +80,7 @@ h5 {
   border: 2px solid var(--primary-color);
   outline: none;
   border-radius: 10px;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .btn-primary:hover,
@@ -103,7 +99,7 @@ h5 {
   border: 2px solid var(--secondary-color);
   outline: none;
   border-radius: 10px;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .btn-secondary:hover,
@@ -113,10 +109,9 @@ h5 {
   border-color: var(--secondary-color);
 }
 
-.field-height{
+.field-height {
   height: 40px;
 }
-
 
 /*--------end of buttons-------------*/
 
@@ -146,20 +141,15 @@ main {
   margin-bottom: 0.5rem;
 }
 
-
-
-
 /*end of cards*/
 
-
 #edit-profile-form .form-control {
-  width: 50%; /* Adjust the width to your desired value for computer views */
+  width: 50%; /* Adjust the width to  desired value for computer views */
 }
 
-
 .profile-picture-container {
-  width: 175px;
-  height: 175px;
+  width: 250px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -185,8 +175,6 @@ main {
   box-shadow: none;
   border: none;
 }
-
-
 
 /* Navbar */
 .navbar {
@@ -228,7 +216,7 @@ main {
 
 /*user*/
 #loginButton .bi-person-circle {
-  color: #353535; /* Replace with your desired color value */
+  color: #353535; /* Replace with  desired color value */
 }
 
 /*-------------searchbox------------*/
@@ -240,10 +228,8 @@ main {
   height: 100%;
 }
 
-
-
 @media (max-width: 768px) {
-  .search-box-element{
+  .search-box-element {
     margin-bottom: 8px;
   }
 
@@ -254,89 +240,13 @@ main {
 
 /*------------end of searchbox------------*/
 
-
-
-
-/*--------------table stuff--------------*/
-
-td {
-  position: relative; /*for the action button to put horizontally center*/
-  vertical-align: middle;
-}
-
-.view-button {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-
-tbody tr:hover {
-  background-color: rgb(255, 217, 243); /* New hover color */
-}
-
-tbody tr:hover .view-button {
-  display: block;
-  visibility: visible;
-  
-}
-
-.view-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-  
-tbody tr {
-  height: 55px; /* Set a fixed height for the table rows */
-}
-
-.table-bordered {
-  border: 2px solid #000; /* Set the border color and thickness */
-}
-
-
-
-
-/*---------------end of table stuff----------------*/
-
-
-
-
 /* Footer */
 footer {
   background-color: var(--secondary-color);
   color: var(--text-color);
 }
 
-/*
-@media (max-width: 800px) {
-  .navbar-brand {
-    margin-right: auto;
-  }
-}
-
-
-/* Media query for computer views 
-@media (min-width: 601px) {
-  
-  #edit-profile-form .form-control,
-  #edit-profile-form .save-changes-button {
-    width: 75%; 
-  }
-}
-*/
-
 @media (max-width: 600px) {
-  /*
-  .container {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  */
-
   .shelter-info p,
   .animal-info p,
   .user-info p {
@@ -358,18 +268,52 @@ footer {
     flex: 1;
     margin-left: 5px; /* Adjust the spacing as needed */
   }
-
-  
 }
 
-/*
-@media (max-width: 992px) {
-  #edit-profile-form .form-control,
-  #edit-profile-form .save-changes-button{
-    width: 100%; 
-  }
 
+
+/*---------Return to top-----*/
+#return-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  width: 50px;
+  height: 50px;
+  background: #333;
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  line-height: 50px;
+  cursor: pointer;
+  border-radius:20px;
+  opacity: 0.7;
 }
-*/
+
+
+/*----------homepage----------------------*/
+
+.hero{
+  position: relative;
+  width: 100%;
+  height: 30vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 0 10px #f361aa;
+}
+
+.hero2{
+  width: 100%;
+  height: 60vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 0 10px #f361aa;
+}
 
 

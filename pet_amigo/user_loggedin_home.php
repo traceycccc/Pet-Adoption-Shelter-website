@@ -1,15 +1,3 @@
-<?php
-session_start();
-$user_id = $_SESSION['ID'];
-
-echo($user_id);
-
-if (!isset($user_id)) {
-  header('Location: user_login.php');
-  exit();
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,12 +16,12 @@ if (!isset($user_id)) {
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">Pet Amigo</a>
+            <a class="navbar-brand" href="user_loggedin_home.php">Pet Amigo</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-              <ul class="navbar-nav">
+                <ul class="navbar-nav">
                 <li class="nav-item ms-3">
                     <a class="nav-link" href="user_loggedin_home.php">Home</a>
                 </li>
@@ -51,7 +39,7 @@ if (!isset($user_id)) {
                     <a class="nav-link" href="#" id="logoutLink">Log Out</a>
                 </li>
 
-              </ul>
+                </ul>
             </div>
         </div>
     </nav>

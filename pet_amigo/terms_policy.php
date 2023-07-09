@@ -66,10 +66,12 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-light text-center py-3"></footer>
+  <div id="footer-container" class="bg-light text-center py-3"></div>
 
   <!-- Bootstrap JS (needs Popper.js) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="footer.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>

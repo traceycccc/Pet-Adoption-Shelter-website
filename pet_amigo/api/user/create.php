@@ -25,6 +25,10 @@
         $user->username = $data->username;
         $user->name = $data->name;
         $user->password = $data->password;
+
+        // Hash the password
+        $hashedPassword = password_hash($data->password, PASSWORD_DEFAULT);
+        $user->password = $hashedPassword;
         
         if (empty($user->email) || empty($user->username) || empty($user->name) || empty($user->password)) {
             throw new Exception();
@@ -58,9 +62,6 @@
                 array('message' => 'User Not Created')
             );
         }
-        
-        
-        
         
     }
 ?>

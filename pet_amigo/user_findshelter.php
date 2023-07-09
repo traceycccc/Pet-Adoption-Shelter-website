@@ -23,24 +23,7 @@ $user_id = $_SESSION['ID'];
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="style.css">
-    <style>
-        #return-to-top {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        display: none;
-        width: 50px;
-        height: 50px;
-        background: #333;
-        color: #fff;
-        text-align: center;
-        font-size: 18px;
-        line-height: 50px;
-        cursor: pointer;
-        border-radius:20px;
-        opacity: 0.7;
-        }
-    </style>
+    
 </head>
 
 <body>
@@ -267,7 +250,6 @@ $user_id = $_SESSION['ID'];
                             <a class="btn btn-primary mt-2" onclick="viewShelterProfile(${ShelterID})">View Details</a>
                         </div>
                     </div>
-
                     `;
 
                     // Append the result card to the results container
@@ -290,10 +272,6 @@ $user_id = $_SESSION['ID'];
             window.location.href = `user_shelterprofile.php?shelterID=${shelterID}`;
         }
 
-
     </script>
-
-
 </body>
-
 </html>

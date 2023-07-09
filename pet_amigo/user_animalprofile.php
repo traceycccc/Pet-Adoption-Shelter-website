@@ -2,21 +2,21 @@
 session_start();
 $user_id = $_SESSION['ID'];
 
-if (isset($_GET['shelterID'])) {
-    $shelterID = $_GET['shelterID'];
+if (isset($_GET['animalID'])) {
+    $animalID = $_GET['animalID'];
 
     // Fetch shelter profile details from the API
-    $url = "http://localhost/pet_amigo/api/shelter/get_shelterprofiledetails.php?shelterID=$shelterID";
+    $url = "http://localhost/pet_amigo/api/animal/get_animalprofiledetails.php?animalID=$animalID";
     $response = file_get_contents($url);
-    $shelterDetails = json_decode($response, true);
+    $animalDetails = json_decode($response, true);
 
     // Fetch shelter profile picture from the API
-    $url = "http://localhost/pet_amigo/api/shelter/get_shelterprofilepicture.php?shelterID=$shelterID";
-    $shelterPicture = file_get_contents($url);
-    $shelterPictureBase64 = base64_encode($shelterPicture);
+    $url = "http://localhost/pet_amigo/api/animal/get_animalprofilepicture.php?animalID=$animalID";
+    $animalPicture = file_get_contents($url);
+    $animalPictureBase64 = base64_encode($animalPicture);
 } else {
-    // Redirect to the shelters page if shelterID is not provided
-    header("Location: user_findshelter.php");
+    // Redirect to the shelters page if animalID is not provided
+    header("Location: user_findpet.php");
     exit();
 }
 ?>
@@ -75,35 +75,36 @@ if (isset($_GET['shelterID'])) {
         <div class="container mt-4">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Shelter Profile</h1>
+                    <h1>Animal Profile</h1>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4 mt-4 d-flex flex-column align-items-center">
                     <div class="profile-picture-container">
-                        <?php if ($shelterPictureBase64) : ?>
-                            <img class="profile-picture" src="data:image/jpeg;base64,<?php echo $shelterPictureBase64; ?>" alt="Shelter Profile Picture">
+                        <?php if ($animalPictureBase64) : ?>
+                            <img class="profile-picture" src="data:image/jpeg;base64,<?php echo $animalPictureBase64; ?>" alt="Animal Profile Picture">
                         <?php else : ?>
                             <p>No profile picture available</p>
                         <?php endif; ?>
                     </div>
                     <br>
-                    <a href="user_requestsubmission.php?shelterID=<?php echo $shelterID; ?>" class="btn btn-primary mt-2">Request Animal Submission</a>
+                    <a href="user_requestadoption.php?animalID=<?php echo $animalID; ?>&shelterID=<?php echo $animalDetails['ShelterID']; ?>" class="btn btn-primary mt-2">Request Pet Adoption</a>
                 </div>
             
 
                 <div class="col-lg-8 mt-4 shelter-info">
-                    <h4>Shelter Information</h4><br>
-                    <p><strong>Shelter Name</strong> <span><?php echo $shelterDetails['ShelterName']; ?></span></p>
-                    <p><strong>Owner</strong> <span><?php echo $shelterDetails['OwnerName']; ?></span></p>
-                    <p><strong>Contacts</strong> <span><?php echo $shelterDetails['Contacts']; ?></span></p>
-                    <p><strong>Email</strong> <span><?php echo $shelterDetails['ShelterEmail']; ?></span></p>
-                    <p><strong>Address</strong> <span><?php echo $shelterDetails['Address']; ?></span></p>
-                    <p><strong>State</strong> <span><?php echo $shelterDetails['State']; ?></span></p>
-                    <p><strong>City</strong> <span><?php echo $shelterDetails['City']; ?></span></p>
+                    <h4>Animal Information</h4><br>
+                    <p><strong>Animal Name</strong> <span><?php echo $animalDetails['AnimalName']; ?></span></p>
+                    <p><strong>Shelter</strong> <span><?php echo $animalDetails['ShelterName']; ?></span></p>
+                    <p><strong>Status</strong> <span><?php echo $animalDetails['Status']; ?></span></p>
+                    <p><strong>Gender</strong> <span><?php echo $animalDetails['Gender']; ?></span></p>
+                    <p><strong>Age</strong> <span><?php echo $animalDetails['Age']; ?></span></p>
+                    <p><strong>Is Vaccinated</strong> <span><?php echo $animalDetails['IsVaccinated']; ?></span></p>
+                    <p><strong>Is Spayed</strong> <span><?php echo $animalDetails['IsSpayed']; ?></span></p>
+                    
                     <br><br>
                     <p><strong>About</strong></p>
-                    <p><?php echo nl2br($shelterDetails['About']); ?></p><br><br><br>
+                    <p><?php echo nl2br($animalDetails['About']); ?></p><br><br><br>
                 </div>
                   
             </div>

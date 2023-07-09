@@ -101,18 +101,16 @@
             return $stmt;
         }
         
-        
 
         public function login() {
-            // Query to check if the user exists with the given email and password
-            $query = "SELECT * FROM users WHERE email = :email AND password = :password";
+            // Query to check if the user exists with the given email
+            $query = "SELECT * FROM users WHERE email = :email";
         
             // Prepare the query
             $stmt = $this->conn->prepare($query);
         
-            // Bind the parameters
+            // Bind the email parameter
             $stmt->bindParam(':email', $this->email);
-            $stmt->bindParam(':password', $this->password);
         
             // Execute the query
             $stmt->execute();
@@ -122,15 +120,19 @@
                 // Fetch the user record
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
         
-                // Set the user properties
-                $this->id = $row['id'];
-                // Set other relevant user properties
+                // Verify the entered password with the hashed password
+                if (password_verify($this->password, $row['password'])) {
+                    // Set the user properties
+                    $this->id = $row['id'];
+                    // Set other relevant user properties
         
-                return true; // Login successful
+                    return true; // Login successful
+                }
             }
         
             return false; // Login failed
         }
+        
         
 
 
@@ -154,27 +156,123 @@
 
             return null;
         }
+        
 
-        // Get the profile details for the user
-        public function getProfileDetails()
-        {
-            $query = 'SELECT username, name, email, contacts, about FROM users WHERE id = ?';
+        public function getProfileDetails() {
+            $query = 'SELECT username, name, email, contacts, about FROM users WHERE id = :id';
+    
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':id', $this->id);
+            $stmt->execute();
+    
+            //return $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($stmt->rowCount() > 0) {
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                return $row;
+                }
+    
+                return null;
+        }
 
+        // Update the user's profile details
+        // Update user profile details
+        public function updateProfileDetails() {
+            // Query
+            $query = 'UPDATE ' . $this->table . '
+                    SET
+                        username = :username,
+                        name = :name,
+                        email = :email,
+                        contacts = :contacts,
+                        about = :about
+                    WHERE
+                        id = :id';
+
+            // Prepare statement
             $stmt = $this->conn->prepare($query);
 
-            // Bind the user ID parameter
-            $stmt->bindParam(1, $this->id);
+            // Clean data
+            $this->username = htmlspecialchars(strip_tags($this->username));
+            $this->name = htmlspecialchars(strip_tags($this->name));
+            $this->email = htmlspecialchars(strip_tags($this->email));
+            $this->contacts = htmlspecialchars(strip_tags($this->contacts));
+            $this->about = htmlspecialchars(strip_tags($this->about));
+            $this->id = htmlspecialchars(strip_tags($this->id));
 
-            // Execute the query
-            $stmt->execute();
+            // Bind data
+            $stmt->bindParam(':username', $this->username);
+            $stmt->bindParam(':name', $this->name);
+            $stmt->bindParam(':email', $this->email);
+            $stmt->bindParam(':contacts', $this->contacts);
+            $stmt->bindParam(':about', $this->about);
+            $stmt->bindParam(':id', $this->id);
 
-            if ($stmt->rowCount() > 0) {
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $row;
+            // Execute query
+            if ($stmt->execute()) {
+                return true;
             }
 
-            return null;
+            // Print error if something goes wrong
+            printf("Error: %s.\n", $stmt->error);
+
+            return false;
         }
+
+        // Update the user's profile picture in the database
+        public function updateProfilePicture($file_name, $file_data) {
+            // Query
+            $query = 'UPDATE ' . $this->table . ' SET profile_picture = :profile_picture WHERE id = :id';
+
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
+
+            // Clean data
+            $file_name = htmlspecialchars(strip_tags($file_name));
+
+            // Bind data
+            $stmt->bindParam(':profile_picture', $file_data, PDO::PARAM_LOB);
+            $stmt->bindParam(':id', $this->id);
+
+            // Execute query
+            if ($stmt->execute()) {
+                return true;
+            }
+
+            // Print error if something goes wrong
+            printf("Error: %s.\n", $stmt->error);
+
+            return false;
+        }
+
+
+        // Method to reset the user's password
+        public function resetPassword($email, $password) {
+            // Check if the user with the given email exists
+            $query = 'SELECT * FROM users WHERE email = :email';
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+
+            if ($stmt->rowCount() === 0) {
+            // User not found
+            return false;
+            }
+
+            // Update the user's password
+            $query = 'UPDATE users SET password = :password WHERE email = :email';
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':password', $password);
+            $stmt->bindParam(':email', $email);
+
+            if ($stmt->execute()) {
+            // Password updated successfully
+            return true;
+            } else {
+            // Password update failed
+            return false;
+            }
+        }
+        
 
        
     }

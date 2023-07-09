@@ -36,13 +36,17 @@
                   <label for="user-password" class="form-label">Password</label>
                   <input type="password" class="form-control" id="user-password" name="user-password" placeholder="Enter password" >
                 </div>
+                <div class="mb-3">
+                  <input type="checkbox" id="showPassword">
+                  <label for="showPassword" class="form-label">Show Password</label>
+                </div>
                 <div class="d-grid gap-2">
                   <button  class="btn btn-primary">Login</button>
                 </div>
               </form>
               <hr>
               <div class="text-center mt-3">
-                <a href="user_forgotpassword.php">Forgot password?</a>
+                <a href="user_changepassword.php">Forgot password?</a>
                 <span class="mx-2">|</span>
                 <a href="user_register.php">New User? Register!</a>
               </div>

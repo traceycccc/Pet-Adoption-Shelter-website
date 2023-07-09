@@ -2,11 +2,10 @@
 session_start();
 $user_id = $_SESSION['ID'];
 $shelterID = $_GET['shelterID'];
-
+$animalID = $_GET['animalID'];
 //echo($user_id);
 //echo($shelterID);
-//echo($user_id);
-//echo($shelterID);
+//echo($animalID);
 
 ?>
 
@@ -16,7 +15,7 @@ $shelterID = $_GET['shelterID'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Request Submission - Pet Amigo</title>
+    <title>User Request Adoption - Pet Amigo</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
@@ -65,55 +64,20 @@ $shelterID = $_GET['shelterID'];
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Animal Submission Request</h4>
-                            <form id="animal-submission-form">
+                            <h4 class="card-title">Animal Adoption Request</h4>
+                            <form id="animal-adoption-form">
+                                <br>
+                                <div class = "card">
+                                <div class="card-body">
+                                    <p>Tip: Describe yourself to show that you are a suitable pet adopter!</p>
+                                    <p>the more information you provide, the better!</p>
+                                </div>
+                                </div>
                                 <!-- Form fields -->
-                                <div class="mb-3">
-                                    <label for="animal-name" class="form-label">Animal Name</label>
-                                    <input type="text" class="form-control" id="animal-name" name="animal-name" placeholder="Enter the animal's name" >
-                                </div>
-                                <div class="mb-3">
-                                    <label>Gender</label>
-                                    <div>
-                                        <input type="radio" id="male" name="gender" value="male" class="form-check-input">
-                                        <label for="male" class="form-check-label radio-label">Male</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" id="female" name="gender" value="female" class="form-check-input">
-                                        <label for="female" class="form-check-label radio-label">Female</label>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="animal-age" class="form-label">Animal Age (If unsure, it's okay to guess!)</label>
-                                    <input type="text" class="form-control" id="animal-age" name="animal-age" placeholder="Enter age (e.g. 2 months, 3 weeks)">
-                                </div>
                                 
                                 <div class="mb-3">
-                                    <label>Is vaccinated</label>
-                                    <div>
-                                        <input type="radio" id="vaccinated-yes" name="vaccinated" value="yes" class="form-check-input">
-                                        <label for="vaccinated-yes" class="form-check-label radio-label">Yes</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" id="vaccinated-no" name="vaccinated" value="no" class="form-check-input">
-                                        <label for="vaccinated-no" class="form-check-label radio-label">No</label>
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label>Is spayed / neutered</label>
-                                    <div>
-                                        <input type="radio" id="spayed-yes" name="spayed-neutered" value="yes" class="form-check-input">
-                                        <label for="spayed-yes" class="form-check-label radio-label">Yes</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" id="spayed-no" name="spayed-neutered" value="no" class="form-check-input">
-                                        <label for="spayed-no" class="form-check-label radio-label">No</label>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="description" class="form-label">Description</label>
-                                    <textarea class="form-control" id="description" name="description" placeholder="Describe what's the animal behaviour, their conditions, and so on!"></textarea>
+                                    <label for="description" class="form-label">Adopter Description</label>
+                                    <textarea class="form-control" id="description" name="description" placeholder="Write about your lifestyle, adoption history, expectations & plans!"></textarea>
                                 </div>
                                 
                                 <div class="d-grid gap-2">
@@ -145,22 +109,19 @@ $shelterID = $_GET['shelterID'];
         // Fetch shelter and user information
         let userId = <?php echo $user_id; ?>;
         let shelterId = <?php echo $shelterID; ?>;
+        let animalId = <?php echo $animalID; ?>;
 
         console.log(userId);
         console.log(shelterId);
+        console.log(animalId);
         
         // Form submission
-        document.getElementById('animal-submission-form').addEventListener('submit', function(event) {
+        document.getElementById('animal-adoption-form').addEventListener('submit', function(event) {
             event.preventDefault();
 
             // Validate form inputs
             if (validateForm()) {
-                // Get form values
-                let animalName = document.getElementById('animal-name').value;
-                let gender = document.querySelector('input[name="gender"]:checked').value;
-                let animalAge = document.getElementById('animal-age').value;
-                let vaccinated = document.querySelector('input[name="vaccinated"]:checked').value;
-                let spayedNeutered = document.querySelector('input[name="spayed-neutered"]:checked').value;
+                // Get form value
                 let description = document.getElementById('description').value;
 
                 // Display alert message
@@ -171,7 +132,9 @@ $shelterID = $_GET['shelterID'];
                 // Fetch user and shelter details from the server
                 Promise.all([
                     fetch(`api/user/get_profiledetails.php?id=${userId}`),
-                    fetch(`api/shelter/get_shelterprofiledetails.php?shelterID=${shelterId}`)
+                    fetch(`api/shelter/get_shelterprofiledetails.php?shelterID=${shelterId}`),
+                    fetch(`api/animal/get_animalprofiledetails.php?animalID=${animalId}`)
+                    
                 ]).then(function (responses) {
                     return Promise.all(responses.map(function (response) {
                         if (!response.ok) {
@@ -179,9 +142,10 @@ $shelterID = $_GET['shelterID'];
                         }
                         return response.json();
                     }));
-                }).then(function([userDetails, shelterDetails]) {
+                }).then(function([userDetails, shelterDetails, animalDetails]) {
                     console.log('userDetails:', userDetails);
                     console.log('shelterDetails:', shelterDetails);
+                    console.log('animalDetails:', animalDetails);
 
                     let userEmail = userDetails.email;
                     let shelterEmail = shelterDetails.ShelterEmail;
@@ -194,26 +158,31 @@ $shelterID = $_GET['shelterID'];
                         
                         Hi User and Shelter,<br><br>
     
-                        Here is the animal submission details that the user has sent to the shelter:<br><br><br><br>
+                        Here is the pet adoption request details that the user has sent to the shelter:<br><br><br><br>
+
+                        
+
+                        <b>Pet Adoption Request Details:</b><br><br><br>
+                        <b>Adoptee Information:</b><br><br>
+                        Animal Name:<br>
+                        ${animalDetails.AnimalName}<br><br>
+                        Gender: <br>
+                        ${animalDetails.Gender}<br><br>
+                        Animal Age:<br> 
+                        ${animalDetails.Age}<br><br>
+                        Vaccinated: <br>
+                        ${animalDetails.IsVaccinated}<br><br>
+                        Spayed/Neutered: <br>
+                        ${animalDetails.IsSpayed}<br><br><br><br><br>
 
                         <b>User Information:</b><br><br>
-                        Name: ${userDetails.name}<br>
-                        Email: ${userEmail}<br>
-                        Contacts: ${userDetails.contacts}<br><br><br><br><br>
-
-                        <b>Animal Submission Details:</b><br><br>
-                        
-                        Animal Name:<br>
-                        ${animalName}<br><br>
-                        Gender: <br>
-                        ${gender}<br><br>
-                        Animal Age:<br> 
-                        ${animalAge}<br><br>
-                        Vaccinated: <br>
-                        ${vaccinated}<br><br>
-                        Spayed/Neutered: <br>
-                        ${spayedNeutered}<br><br>
-                        Description:<br>
+                        Name: <br>
+                        ${userDetails.name}<br><br>
+                        Email: <br>
+                        ${userEmail}<br><br>
+                        Contacts: <br>
+                        ${userDetails.contacts}<br><br>
+                        Adopter Description:<br>
                         ${description}<br><br>
 
                         If you have any enquiries, do not hesitate to contact us via petamigotwentythree@gmail.com.<br>
@@ -234,14 +203,33 @@ $shelterID = $_GET['shelterID'];
                         SecureToken: 'c9e08eec-0ee6-4ac8-acff-99cbea86b9a0',
                         To: shelterEmail + ', ' + userEmail,
                         From: 'petamigotwentythree@gmail.com',
-                        Subject: 'Stray Animal Submission Request',
+                        Subject: 'Pet Adoption Request',
                         Body: emailBody
                     }).then(function() {
                         console.log('Email sent successfully');
                         alert('The request has been sent to the shelter email. You will receive an email as well as evidence.');
+
+
+                        // Update animal status
+                        let animalStatus = 'requested'; // Set the desired status value
+                        fetch(`api/animal/update_animalstatus.php?animalID=${animalId}&status=${animalStatus}`, { method: 'PUT' })
+                            .then(function (response) {
+                                if (!response.ok) {
+                                    throw new Error('Error updating animal status');
+                                }
+                                return response.json();
+                            })
+                            .then(function (data) {
+                                console.log('Animal status updated successfully:', data);
+                                // Redirect to the animal profile page
+                                window.location.href = `user_animalprofile.php?animalID=${animalId}`;
+                            })
+                            .catch(function (error) {
+                                console.error('Error updating animal status:', error);
+                                alert('An error occurred while updating the animal status. Please try again later.');
+                            });
                         
-                        //go back to that shelter's profile page
-                        window.location.href = `user_shelterprofile.php?shelterID=${shelterId}`; 
+                        
                     }).catch(function(error) {
                         console.error('Error sending email:', error);
                         alert('An error occurred while sending the email. Please try again later.');
@@ -261,7 +249,7 @@ $shelterID = $_GET['shelterID'];
         // Validate form inputs
         function validateForm() {
             // Validate required fields
-            let requiredFields = ['animal-name', 'animal-age', 'description'];
+            let requiredFields = ['description'];
             let isValid = true;
 
             for (let field of requiredFields) {
@@ -280,21 +268,7 @@ $shelterID = $_GET['shelterID'];
                 }
             }
 
-            // Validate radio buttons
-            let radioGroups = ['gender', 'vaccinated', 'spayed-neutered'];
-
-            for (let group of radioGroups) {
-                let checkedInputs = document.querySelectorAll(`input[name="${group}"]:checked`);
-
-                if (checkedInputs.length === 0) {
-                    let radioButtons = document.getElementsByName(group);
-                    radioButtons.forEach(button => button.classList.add('is-invalid'));
-                    isValid = false;
-                } else {
-                    let radioButtons = document.getElementsByName(group);
-                    radioButtons.forEach(button => button.classList.remove('is-invalid'));
-                }
-            }
+           
 
             if (!isValid) {
                 alert('Please fill in all the fields!');
