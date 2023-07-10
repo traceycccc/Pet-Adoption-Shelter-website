@@ -17,13 +17,13 @@ Features:
 
    On the animal's profile page, the user can click on the 'request adoption' button to fill in a form and submit the request. After submitting the request, an email from the website (petamigotwentythree@gmail.com) that contains all the information on the form is sent to the emails of  both the user and the shelter (that the animal is belonged to). As the rules and requirements for adoption set by shelters differ, the adoption request form on the website is a generic form, and using email to connect both sides is a good way to start, and from there, both sides can continue the process of evaluating the user if they are a suitable adopter, such as asking the user to show their home to see if it is a suitable place for the adoptee to live.  schedule animal shelter shop visits.
    
-3.	Pet Submission request: Users can submit pets that they are unable to continue keeping, providing information about the pet's age, breed, gender, medical history, and temperament, which can help other potential adopters in their decision-making process in the future.
+2.	Pet Submission request: Users can submit pets that they are unable to continue keeping, providing information about the pet's age, breed, gender, medical history, and temperament, which can help other potential adopters in their decision-making process in the future.
 
     To find a shelter, the website is designed in a way that helps the user to search for the nearest to furthest shelters that are registered on this website, by entering an address of a location. The page shows the list of shelters and each shelter shows the distance from the entered location.
 
-6.	User Accounts: Users can create accounts on the website to manage their reported or submitted pets, track the status of their submissions, and communicate with animal shelters or pet shops.
+3.	User Accounts: Users can create accounts on the website to manage their reported or submitted pets, track the status of their submissions, and communicate with animal shelters or pet shops.
    The user's profile pages are created not just for the account but also for the shelters to view their profile.
-8.	Search and Adoption: Potential adopters can search and view profiles of available pets based on various criteria such as species, breed, age, and location. They can express interest in a pet, inquire about adoption requirements, and schedule animal shelter shop visits.
+4.	Search and Adoption: Potential adopters can search and view profiles of available pets based on various criteria such as species, breed, age, and location. They can express interest in a pet, inquire about adoption requirements, and schedule animal shelter shop visits.
 
 
 
